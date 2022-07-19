@@ -10,6 +10,7 @@ import Lead from '@/components/vendas/Lead.vue'
 import Contratos from '@/components/vendas/Contratos.vue'
 
 import Servicos from '@/components/servicos/Servicos.vue'
+import Servico from '@/components/servicos/Servico.vue'
 
 import Login from '@/views/Login.vue'
 import Site from '@/views/Site.vue'
@@ -56,7 +57,14 @@ const routes = [
             {
                 path: 'servicos', // localhost:8080/home/servicos
                 name: 'servicos',
-                component: Servicos
+                component: Servicos,
+                children: [
+                    {
+                        path: ':id', // localhost:8080/home/servicos/5
+                        name: 'servico',
+                        component: Servico
+                    }
+                ]
             },
 
             {

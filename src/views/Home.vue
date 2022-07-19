@@ -31,9 +31,11 @@
                     <i class="bi bi-file-earmark-text"></i> Contratos
                 </router-link>
                 <!-- END Vendas -->
+                <!-- Serviços -->
                 <router-link class="list-group-item list-group-item-action" :to="{ name: 'servicos' }" exact-active-class="active">
                     <i class="bi bi-card-checklist"></i> Serviços
                 </router-link>
+                <!-- END Serviços -->
             </div>
             <div class="w-100">
                 <nav aria-label="breadcrumb" class="pt-1 ps-3">
