@@ -15,23 +15,23 @@
 
         <div class="d-flex">
             <div class="list-group menu-esquerda">
-                <router-link class="list-group-item list-group-item-action" :to="{ path: '/home/dashboard' }" exact-active-class="active">
+                <router-link class="list-group-item list-group-item-action" :to="{ name: 'dashboard' }" exact-active-class="active">
                     <i class="bi bi-speedometer2"></i> Dashboard
                 </router-link>
                 <!-- Vendas -->
-                <router-link class="list-group-item list-group-item-action" :to="{ path: '/home/vendas' }" exact-active-class="active">
+                <router-link class="list-group-item list-group-item-action" :to="{ name: 'vendas' }" exact-active-class="active">
                     <i class="bi bi-cart"></i> Vendas
                 </router-link>
-                <router-link class="list-group-item list-group-item-action" :to="{ path: '/home/vendas/leads' }" exact-active-class="active">
+                <router-link class="list-group-item list-group-item-action" :to="{ name: 'leads' }" exact-active-class="active">
                     &nbsp;&nbsp;&nbsp;
                     <i class="bi bi-activity"></i> Leads
                 </router-link>
-                <router-link class="list-group-item list-group-item-action" :to="{ path: '/home/vendas/contratos' }" exact-active-class="active">
+                <router-link class="list-group-item list-group-item-action" :to="{ name: 'contratos' }" exact-active-class="active">
                     &nbsp;&nbsp;&nbsp;
                     <i class="bi bi-file-earmark-text"></i> Contratos
                 </router-link>
                 <!-- END Vendas -->
-                <router-link class="list-group-item list-group-item-action" :to="{ path: '/home/servicos' }" exact-active-class="active">
+                <router-link class="list-group-item list-group-item-action" :to="{ name: 'servicos' }" exact-active-class="active">
                     <i class="bi bi-card-checklist"></i> Serviços
                 </router-link>
             </div>
