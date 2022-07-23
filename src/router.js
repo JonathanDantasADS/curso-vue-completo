@@ -1,24 +1,46 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue'
-import Dashboard from '@/components/dashboard/Dashboard.vue'
-import DashboardRodape from '@/components/dashboard/DashboardRodape.vue'
+// import Home from '@/views/Home.vue'
+// import Dashboard from '@/components/dashboard/Dashboard.vue'
+// import DashboardRodape from '@/components/dashboard/DashboardRodape.vue'
 
-import Vendas from '@/components/vendas/Vendas.vue'
-import Leads from '@/components/vendas/Leads.vue'
-import VendasPadrao from '@/components/vendas/VendasPadrao.vue'
-import Lead from '@/components/vendas/Lead.vue'
-import Contratos from '@/components/vendas/Contratos.vue'
+// import Vendas from '@/components/vendas/Vendas.vue'
+// import Leads from '@/components/vendas/Leads.vue'
+// import VendasPadrao from '@/components/vendas/VendasPadrao.vue'
+// import Lead from '@/components/vendas/Lead.vue'
+// import Contratos from '@/components/vendas/Contratos.vue'
 
-import Servicos from '@/components/servicos/Servicos.vue'
-import Servico from '@/components/servicos/Servico.vue'
-import Indicadores from '@/components/servicos/Indicadores.vue'
-import Opcoes from '@/components/servicos/Opcoes.vue'
+// import Servicos from '@/components/servicos/Servicos.vue'
+// import Servico from '@/components/servicos/Servico.vue'
+// import Indicadores from '@/components/servicos/Indicadores.vue'
+// import Opcoes from '@/components/servicos/Opcoes.vue'
 
-import Login from '@/views/Login.vue'
-import Site from '@/views/Site.vue'
+// import Login from '@/views/Login.vue'
+// import Site from '@/views/Site.vue'
 
-import PaginaNaoEncontrada from '@/views/PaginaNaoEncontrada.vue'
+// import PaginaNaoEncontrada from '@/views/PaginaNaoEncontrada.vue'
+
+// lazy loading
+const Home = () => import('@/views/Home.vue')
+
+const Dashboard = () => import(/* webpackChunkName: "dashboard" */'@/components/dashboard/Dashboard.vue')
+const DashboardRodape = () => import(/* webpackChunkName: "dashboard" */'@/components/dashboard/DashboardRodape.vue')
+
+const Vendas = () => import(/* webpackChunkName: "vendas" */'@/components/vendas/Vendas.vue')
+const Leads = () => import(/* webpackChunkName: "vendas" */'@/components/vendas/Leads.vue')
+const VendasPadrao = () => import(/* webpackChunkName: "vendas" */'@/components/vendas/VendasPadrao.vue')
+const Lead = () => import(/* webpackChunkName: "vendas" */'@/components/vendas/Lead.vue')
+const Contratos = () => import(/* webpackChunkName: "vendas" */'@/components/vendas/Contratos.vue')
+
+const Servicos = () => import(/* webpackChunkName: "servicos" */'@/components/servicos/Servicos.vue')
+const Servico = () => import(/* webpackChunkName: "servicos" */'@/components/servicos/Servico.vue')
+const Indicadores = () => import(/* webpackChunkName: "servicos" */'@/components/servicos/Indicadores.vue')
+const Opcoes = () => import(/* webpackChunkName: "servicos" */'@/components/servicos/Opcoes.vue')
+
+const Login = () => import(/* webpackChunkName: "login" */'@/views/Login.vue')
+const Site = () => import(/* webpackChunkName: "login" */'@/views/Site.vue')
+
+const PaginaNaoEncontrada = () => import('@/views/PaginaNaoEncontrada.vue')
 
 const routes = [
     {
@@ -136,6 +158,21 @@ const routes = [
 
 const router = createRouter({
     history: createWebHashHistory(),
+    scrollBehavior(to, from, savedPosition) {
+        // return { left: 0, top: 150 } // left = x; top = y
+        if(savedPosition){
+            return savedPosition
+        }
+
+        if(to.hash) {
+            return { 
+                el: to.hash 
+            } // to.hash deve corresponder a um ID html
+            //fragmento = #secao_1
+        }
+
+        return { left: 0, top: 0 }
+    },
     routes
 })
 
