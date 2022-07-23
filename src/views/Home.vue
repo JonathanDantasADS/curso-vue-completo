@@ -50,6 +50,10 @@
 
             </div>
         </div>
+
+        <div class="rodape">
+            <router-view name="rodape"></router-view>
+        </div>
     </div>
 </template>
 
@@ -81,5 +85,13 @@
     background-color: #33c586af;
     border-color: #1bdc88f8;
 } */
+
+.rodape {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc;
+}
 
 </style>

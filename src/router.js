@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Dashboard from '@/components/dashboard/Dashboard.vue'
+import DashboardRodape from '@/components/dashboard/DashboardRodape.vue'
 
 import Vendas from '@/components/vendas/Vendas.vue'
 import Leads from '@/components/vendas/Leads.vue'
@@ -11,9 +12,13 @@ import Contratos from '@/components/vendas/Contratos.vue'
 
 import Servicos from '@/components/servicos/Servicos.vue'
 import Servico from '@/components/servicos/Servico.vue'
+import Indicadores from '@/components/servicos/Indicadores.vue'
+import Opcoes from '@/components/servicos/Opcoes.vue'
 
 import Login from '@/views/Login.vue'
 import Site from '@/views/Site.vue'
+
+import PaginaNaoEncontrada from '@/views/PaginaNaoEncontrada.vue'
 
 const routes = [
     {
@@ -23,6 +28,7 @@ const routes = [
     },
     {
         path: '/home', // localhost:8080/home
+        alias: '/app',
         name: 'home',
         component: Home,
         children: [
@@ -62,15 +68,27 @@ const routes = [
                     {
                         path: ':id', // localhost:8080/home/servicos/5
                         name: 'servico',
-                        component: Servico
+                        components: {
+                            default: Servico,
+                            opcoes: Opcoes,
+                            indicadores: Indicadores,
+                        }
                     }
                 ]
             },
 
             {
+                path: '/:catchAll(.*)*', 
+                component: PaginaNaoEncontrada
+            },
+
+            {
                 path: 'dashboard', // localhost:8080/home/dashboard
                 name: 'dashboard',
-                component: Dashboard
+                components: {
+                    default: Dashboard,
+                    rodape: DashboardRodape,
+                }
             }
         ]
     },
@@ -78,7 +96,19 @@ const routes = [
         path: '/login', // localhost:8080/login
         name: 'login',
         component: Login
-    }
+    },
+    {
+        path: '/redirecionamento-1', 
+        redirect: '/home/servicos'
+    },
+    {
+        path: '/redirecionamento-2', 
+        redirect: { name: 'leads'}
+    },
+    {
+        path: '/redirecionamento-3', 
+        redirect: '/home/servicos'
+    },
 ]
 
 const router = createRouter({
