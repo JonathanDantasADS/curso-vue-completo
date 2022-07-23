@@ -34,6 +34,14 @@ import ApiMixin from '@/mixins/ApiMixin'
         mixins: [ApiMixin],
         created() {
             this.getDadosApi('http://localhost:3000/leads')
+        },
+        // beforeRouteEnter(to, from, next) {
+        beforeRouteEnter() {
+            console.log(`Guarda de componente beforeRouteEnter`)
+        },
+        // beforeRouteLeave(to, from, next) {
+        beforeRouteLeave() {
+            console.log('Guarda de componente beforeRouteLeave')
         }
     }
 </script>

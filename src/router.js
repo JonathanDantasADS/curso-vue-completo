@@ -24,13 +24,19 @@ const routes = [
     {
         path: '/', // localhost:8080/site
         name: '/',
-        component: Site
+        component: Site,
+        meta: { 
+            requerAutorizacao: false 
+        }
     },
     {
         path: '/home', // localhost:8080/home
         alias: '/app',
         name: 'home',
         component: Home,
+        meta: { 
+            requerAutorizacao: true 
+        },
         children: [
             {
                 path: 'vendas', // localhost:8080/home/vendas
@@ -38,14 +44,21 @@ const routes = [
                 component: Vendas,
                 children: [
                     {
-                        path: 'leads/:id', // localhost:8080/home/vendas/leads/5
-                        name: 'leads/{$id}',
-                        component: Lead,
-                    },
-                    {
                         path: 'leads', // localhost:8080/home/vendas/leads
                         name: 'leads',
                         component: Leads,
+                        
+                        // beforeEnter(to, from, next){
+                        beforeEnter(){
+                            // Poderiamos verificar se o usuário tem permissão de acesso a rota
+                            console.log('Guarda de rota beforeEnter')
+                        },
+                    },
+                    {
+                        path: 'leads/:id', // localhost:8080/home/vendas/leads/5
+                        props: true,
+                        name: 'leads/{$id}',
+                        component: Lead,
                     },
                     {
                         path: 'contratos', // localhost:8080/home/vendas/contratos
@@ -72,7 +85,13 @@ const routes = [
                             default: Servico,
                             opcoes: Opcoes,
                             indicadores: Indicadores,
-                        }
+                        },
+                        props: {
+                            default: true,
+                            indicadores: true,
+                            opcoes: true,
+                        },
+
                     }
                 ]
             },
@@ -95,6 +114,10 @@ const routes = [
     {
         path: '/login', // localhost:8080/login
         name: 'login',
+        meta: {
+            requerAutorizacao: false,
+            campo2: 'teste'
+        },
         component: Login
     },
     {
@@ -114,6 +137,22 @@ const routes = [
 const router = createRouter({
     history: createWebHashHistory(),
     routes
+})
+
+// router.beforeEach(to => {
+router.beforeEach(() => {
+    // console.log(`-> Destino: ${to.path}`)
+    console.log(`Guarda global beforeEach`)
+})
+
+// router.afterEach((to, from) => {
+router.afterEach(() => {
+    // console.log(`Origem: ${from.path} -> Destino: ${to.path}`)
+    console.log(`Guarda global afterEach`)
+})
+
+router.beforeResolve(() => {
+    console.log('Guarda global beforeResolve')
 })
 
 export default router

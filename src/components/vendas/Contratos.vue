@@ -69,27 +69,18 @@ import ApiMixin from '@/mixins/ApiMixin'
         }),
         methods: {
             pesquisar() {
-
-                Object.keys(this.formPesquisa).forEach(chave => {
-                    if(this.formPesquisa[chave] == '') delete this.formPesquisa[chave]
-                })
-                const queryParams = new URLSearchParams(this.formPesquisa).toString()
-                const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
-                this.getDadosApi(url)
+                const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}`
+                this.getDadosApi(url, this.formPesquisa)
             }
         },
-
         created() {
-            const queryParams = new URLSearchParams(this.$route.query)
-            const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
-            this.getDadosApi(url)
+            const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}`
+            this.getDadosApi(url, this.$route.query)
         },
         beforeRouteUpdate(to, from, next) {
-            const queryParams = new URLSearchParams(to.query).toString()
-            const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
-            console.log(url)
-            this.getDadosApi(url)
+            const url = `http://127.0.0.1:3000/contratos?${this.parametrosDeRelacionamento}`
+            this.getDadosApi(url, to.query)
             next()
-        }
+        },
     }
 </script>
