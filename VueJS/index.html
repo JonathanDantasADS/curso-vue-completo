@@ -11,31 +11,12 @@
     </style>
 </head>
 <body>
-    <div id="app">     
-        <button @click="exibirSaldo = !exibirSaldo">
-            <span v-if="exibirSaldo">Ocultar Saldo</span>
-            <span v-if="!exibirSaldo">Exibir Saldo</span>
-        </button>
-        <p>Saldo: 
-            <span v-if="exibirSaldo">R$ {{ saldo }}</span>
-            <span v-if="!exibirSaldo">R$ 0    ... Tá liso em! kkk </span>
-        </p>
-        <hr>
-
-        <!-- v-if, v-else e v-else-if  -->
-        Idade: <input type="text" id="inputIdade" @blur="setIdade()">
-        <p v-if="idade == 0"></p>
-        <p v-else-if="idade < 18">Menor de idade</p>
-        <p v-else-if="idade >= 100">Beleza, Rainha Elizabeth</p>
-        <p v-else>Maior de idade</p>
-        {{ idade }} Anos
-        
-        Nota: <input type="text" id="inputNota" @blur="setNota()">
-        <p v-if="nota == ''">Digite a noite do aluno(a)</p>
-        <p v-else-if="nota < 5"> Aluno reprovado, vai estudar menino!</p>
-        <p v-else-if="nota >= 5 && nota < 7"> Aluno recuperação</p>
-        <p v-else-if="nota >= 7 && nota <= 10">Aluno aprovado(a)</p>
-        <p v-else>Valor informando é inválido</p>
+    <div id="app">
+        <p @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo tooltip</p>
+        <div v-show="exibirTextoAjuda">
+            <h3>Titulo texto ajuda</h3>
+            <p>Conteudo texto ajuda</p>
+        </div>
 
     </div>
 
@@ -43,19 +24,10 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                saldo: 4500.40,
-                exibirSaldo: false,
-                idade: 0,
-                nota: 0
+                exibirTextoAjuda: false
+
             },
             methods: {
-                setIdade(){
-                    this.idade = inputIdade.value
-                },
-
-                setNota(){
-                    this.nota = inputNota.value
-                }
 
             },
         })
