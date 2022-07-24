@@ -7,6 +7,9 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
+        .negrito {
+            background-color: rgb(29, 167, 19);
+        }
         .purple {
             color: rgb(125, 38, 192);
             background-color: black;
@@ -16,10 +19,13 @@
 <body>
 
     <div id="app">
-        <a v-bind:href="site">Meu Site</a>
-        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
-        <input type="text" v-bind:placeholder="instrucoes" v-bind:value="nome">
-        <input type="checkbox" v-bind:checked="marcado">
+        <!-- a ultima propriedade que vai ser chamada -->
+        <a :href="site" href="https://google.com.br">Meu Site</a>
+
+        <!-- concatenamento de valores -->
+        <p :class="cor" class="negrito">Entendendo a diretiva v-bind</p>
+        <input type="text" :placeholder="instrucoes" :value="nome">
+        <input type="checkbox" :checked="marcado">
         
     </div>
 
