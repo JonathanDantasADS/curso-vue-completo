@@ -12,8 +12,17 @@
 <body>
     <div id="app">
                     <!-- v-on:keyup -->
-        <input type="text" @keyup="imprimirTexto()">
-        <button @click="mensagemAlerta()">Enviar</button>
+        <div>        
+            <label for="">Titulo: </label>
+            <input type="text" @keyup="imprimirTexto('Enviando seus dados para a analise')">
+            <button @click="mensagemAlertaA('Titulo enviado com sucesso')">Titulo</button>
+        </div>
+        <div>
+            <label for="">Nome: </label>
+            <input type="text" @keyup="imprimirTexto2('Nome', 'Jonathan Dantas')">
+            <button @click="mensagemAlertaB('jonathan', 'enviado com sucesso')">Nome</button>
+        </div>
+        
     </div>
 
     <script>
@@ -22,11 +31,22 @@
             data: {
             },
             methods: {
-                imprimirTexto() {
-                    console.log('Mensagem')
+                imprimirTexto(texto) {
+                    console.log(texto)
                 },
-                mensagemAlerta() {
-                    alert('BORAAA!')
+
+                imprimirTexto2(textoA, textoB) {
+                    console.log(textoA)
+                    console.log(textoB)
+                },
+
+                mensagemAlertaA(mensagem) {
+                    alert(mensagem)
+                },
+                
+                mensagemAlertaB(mensagemA, mensagemB) {
+                    alert(mensagemA)
+                    alert(mensagemB)
                 }
             },
         })

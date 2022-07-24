@@ -8,11 +8,11 @@
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Vue = factory());
 }(this, function () { 'use strict';
-  
+
   /*  */
+
   var emptyObject = Object.freeze({});
 
-  
   // These helpers produce better VM code in JS engines due to their
   // explicitness and function inlining.
   function isUndef (v) {
