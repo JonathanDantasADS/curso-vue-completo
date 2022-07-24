@@ -7,38 +7,32 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
-        .negrito {
-            background-color: rgb(29, 167, 19);
+        .green {
+            color: white;
+            background-color: green;
         }
-        .purple {
-            color: rgb(125, 38, 192);
-            background-color: black;
+
+        .blue {
+            color: white;
+            background-color: blue;
         }
     </style>
 </head>
 <body>
 
     <div id="app">
-        <!-- a ultima propriedade que vai ser chamada -->
-        <a :href="site" href="https://google.com.br">Meu Site</a>
-
-        <!-- concatenamento de valores -->
-        <p :class="cor" class="negrito">Entendendo a diretiva v-bind</p>
-        <input type="text" :placeholder="instrucoes" :value="nome">
-        <input type="checkbox" :checked="marcado">
-        
+        <!-- data -->
+        {{ 5 + 5 }}
+        {{ cor.substr(0,2) }}
+        <input :value=" 5 + 5 " :class=" false ? 'green' : 'blue' ">
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                site: 'https://google.com.br',
-                cor: 'purple',
-                instrucoes: 'Digite qualquer coisa',
-                nome: 'Jonathan Dantas',
-                marcado: true,
-
+                cor: 'green',
+                teste: true
             },
             methods: {},
         })
