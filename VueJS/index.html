@@ -12,52 +12,35 @@
 </head>
 <body>
     <div id="app">
-        {{paciente}}
-        <div>
-            <!-- <input type="text" id="paciente" :value="paciente" @keyup="alterar($event)"> --> 
-            <!-- <input type="text" id="paciente" :value="paciente" @keyup="paciente = $event.target.value"> -->
-            <input type="text" v-model="paciente">
-            <hr>                                            
-                                                    <!-- opcional  -->
-            <input type="radio" value="f" v-model="sexo" name="sexo">Feminino
-            <input type="radio" value="m" v-model="sexo" name="sexo">Masculino
-            <br> {{sexo}}
-            <hr>
-            <select v-model="plano" name="plano" id="plano">
-                <option value="" disabled> Selecione </option>
-                <option value="Basico1">Básico 1</option>
-                <option value="Basico2">Básico 2</option>
-                <option value="Classico">Classico</option>
-                <option value="Prime">Prime</option>
-            </select>
-            <br> {{plano}}
-            <hr>
-                                                                <!-- opcional -->
-            <input type="checkbox" value="10" v-model="doencas" name="doencas[]">Asma
-            <input type="checkbox" value="20" v-model="doencas" name="doencas[]">Covid
-            <input type="checkbox" value="30" v-model="doencas" name="doencas[]">Diabetes 1
-            <input type="checkbox" value="40" v-model="doencas" name="doencas[]">Rinite
-            <br> {{ doencas }}
-            <hr>
-
-            <textarea v-model="diagnostico" name="diagnostico" id="diagnostico"></textarea>
-            <br> {{diagnostico}}
-        </div>
+        <span>Paciente: </span><input type="text" v-model="paciente"> 
+        <ul>
+            <li v-for="p in lista">
+                {{p.nome}}, {{p.idade}}
+            </li>
+        </ul>
     </div>
-
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                paciente: 'João da Silva',
-                sexo: '',
-                plano: '',
-                doencas: [],
-                diagnostico: ''
+                paciente: '',
+                pacientes: [
+                    { nome: 'Jonathan', idade: 28},
+                    { nome: 'Joao Nathan', idade: 18},
+                    { nome: 'Jennifer Renatinha', idade: 24},
+                    { nome: 'Jessi Alberto', idade: 42},
+                    { nome: 'Jonny', idade: 16},
+                ],
+                lista: [],
             },
-            methods: {
-            },
+            methods: {},
             computed: {},
+            watch: {
+                paciente(valorNovo) {
+                    console.log(valorNovo)
+                    this.lista = this.pacientes.filter(p => p.nome.match(valorNovo))
+                },
+            }
         })
     </script>
 
