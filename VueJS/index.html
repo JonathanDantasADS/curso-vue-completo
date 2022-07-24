@@ -6,38 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./vue.js"></script>
     <title>Document</title>
+    <style>
+        .green {
+            color: white;
+            background-color: green;
+        }
+
+        .blue {
+            color: white;
+            background-color: blue;
+        }
+    </style>
 </head>
 <body>
 
     <div id="app">
-        <h1> {{somar()}} </h1>
-        <h1> {{subtrair()}} </h1>
-        <h1> {{multiplicar()}} </h1>
-        <h1> {{dividir()}} </h1>
-        <h1> {{numeroAleatorio()}} </h1>
+        <!-- data -->
+        {{ 5 + 5 }}
+        {{ cor.substr(0,2) }}
+        <input :value=" 5 + 5 " :class=" false ? 'green' : 'blue' ">
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
-            data: {},
-            methods: {
-                somar: function somar() { // convencional
-                    return 4 + 2;
-                },
-                subtrair: function () { // anônima
-                    return 4 - 2;
-                },
-                multiplicar: () => { // arrow function 
-                    return 4 * 2;
-                },
-                dividir() { // forma mais simples
-                    return 4 / 2;
-                },
-                numeroAleatorio: function numeroAleatorio() {
-                    return Math.random();
-                }
-            }
+            data: {
+                cor: 'green',
+                teste: true
+            },
+            methods: {},
         })
     </script>
 
