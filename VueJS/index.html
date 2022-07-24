@@ -6,38 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./vue.js"></script>
     <title>Document</title>
+    <style>
+        .purple {
+            color: rgb(125, 38, 192);
+            background-color: black;
+        }
+    </style>
 </head>
 <body>
 
     <div id="app">
-        <h1> {{somar()}} </h1>
-        <h1> {{subtrair()}} </h1>
-        <h1> {{multiplicar()}} </h1>
-        <h1> {{dividir()}} </h1>
-        <h1> {{numeroAleatorio()}} </h1>
+        <a v-bind:href="site">Meu Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="instrucoes" v-bind:value="nome">
+        <input type="checkbox" v-bind:checked="marcado">
+        
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
-            data: {},
-            methods: {
-                somar: function somar() { // convencional
-                    return 4 + 2;
-                },
-                subtrair: function () { // anônima
-                    return 4 - 2;
-                },
-                multiplicar: () => { // arrow function 
-                    return 4 * 2;
-                },
-                dividir() { // forma mais simples
-                    return 4 / 2;
-                },
-                numeroAleatorio: function numeroAleatorio() {
-                    return Math.random();
-                }
-            }
+            data: {
+                site: 'https://google.com.br',
+                cor: 'purple',
+                instrucoes: 'Digite qualquer coisa',
+                nome: 'Jonathan Dantas',
+                marcado: true,
+
+            },
+            methods: {},
         })
     </script>
 
