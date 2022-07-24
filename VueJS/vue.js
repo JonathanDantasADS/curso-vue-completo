@@ -9065,7 +9065,10 @@
 
   /*  */
 
+  
+
   // install platform specific utils
+  Vue.config.devtools = true;
   Vue.config.mustUseProp = mustUseProp;
   Vue.config.isReservedTag = isReservedTag;
   Vue.config.isReservedAttr = isReservedAttr;

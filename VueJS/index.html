@@ -14,8 +14,8 @@
                     <!-- v-on:keyup -->
         <div>        
             <label for="">Titulo: </label>
-            <input type="text" @keyup="imprimirTexto('Enviando seus dados para a analise')">
-            <button @click="mensagemAlertaA('Titulo enviado com sucesso')">Titulo</button>
+            <input type="text" @keyup="imprimirTexto('oioioi')">
+            <button @click="mensagemAlerta($event, 'texto', 100)">Titulo</button>
         </div>
         <div>
             <label for="">Nome: </label>
@@ -40,8 +40,10 @@
                     console.log(textoB)
                 },
 
-                mensagemAlertaA(mensagem) {
-                    alert(mensagem)
+                mensagemAlerta(e, x, y) {
+                    console.log(e)
+                    alert(x)
+                    alert(y)
                 },
                 
                 mensagemAlertaB(mensagemA, mensagemB) {
