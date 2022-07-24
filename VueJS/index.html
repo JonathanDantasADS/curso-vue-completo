@@ -10,47 +10,35 @@
 <body>
 
     <div id="app">
-        <h1> Nome: {{nome}}</h1>    <!-- acessando propriedade -->
-        <h1> Idade: {{idade}}</h1>  <!-- acessando propriedade -->
-        <h1> Sobre: {{mensagem}}</h1>   <!-- acessando propriedade -->
-        <h1> Hobbies: {{hobbies[2]}}</h1>   <!-- acessando indice -->
-        <h1> Animal: {{animal}}</h1>    <!-- propriedade -->
-        <h1> Idade do Animal: {{animal.idade}}</h1> <!-- acessando objeto -->
-        <h1> Hábitos: {{animal.caracteristicas[0].habitos}} </h1> <!-- acessando a propriedade habitos, do indice 0 do array de objetos da propriedade caracteristica, que fica dentro do objeto animal de um objeto principal chamado data-->
+        <h1> {{somar()}} </h1>
+        <h1> {{subtrair()}} </h1>
+        <h1> {{multiplicar()}} </h1>
+        <h1> {{dividir()}} </h1>
+        <h1> {{numeroAleatorio()}} </h1>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
-            data: { // atributos reativos
-                nome: 'Jonathan Dantas',
-                idade: 28,
-                mensagem: 'Faça acontecer!',
-                logado: false,
-                hobbies: [ // array
-                    'Estudar',
-                    'Jogar vídeo game',
-                    'Academia',
-                ],
-                animal: { // objeto
-                    tipo: 'Leão(a)',
-                    sexo: 'Masculino',
-                    idade: 12,
-                    patas: 4,
-                    cadeia_alimentar_superior: [ // array
-                        'raposa',
-                        'coelho',
-                    ],
-                    caracteristicas : [ // array de objetos
-                        {
-                            classe: 'terreste',
-                            habitos: 'caçar',
-                        },
-                    ],
+            data: {},
+            methods: {
+                somar: function somar() { // convencional
+                    return 4 + 2;
                 },
+                subtrair: function () { // anônima
+                    return 4 - 2;
+                },
+                multiplicar: () => { // arrow function 
+                    return 4 * 2;
+                },
+                dividir() { // forma mais simples
+                    return 4 / 2;
+                },
+                numeroAleatorio: function numeroAleatorio() {
+                    return Math.random();
+                }
             }
         })
-        console.log(vm)
     </script>
 
 </body>
