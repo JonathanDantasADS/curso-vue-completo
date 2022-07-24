@@ -7,34 +7,28 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
-        .green {
-            color: white;
-            background-color: green;
-        }
-
-        .blue {
-            color: white;
-            background-color: blue;
-        }
     </style>
 </head>
 <body>
-
     <div id="app">
-        <!-- data -->
-        {{ 5 + 5 }}
-        {{ cor.substr(0,2) }}
-        <input :value=" 5 + 5 " :class=" false ? 'green' : 'blue' ">
+                    <!-- v-on:keyup -->
+        <input type="text" @keyup="imprimirTexto()">
+        <button @click="mensagemAlerta()">Enviar</button>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                cor: 'green',
-                teste: true
             },
-            methods: {},
+            methods: {
+                imprimirTexto() {
+                    console.log('Mensagem')
+                },
+                mensagemAlerta() {
+                    alert('BORAAA!')
+                }
+            },
         })
     </script>
 
