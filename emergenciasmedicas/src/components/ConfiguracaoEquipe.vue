@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h5><i class="bi-boxes me-2"></i>Configuração da equipe</h5>
+        <h5><i class="bi-boxes me-2"></i>{{ tituloCustomizadoLocal }}</h5>
       </div>
     </div>
     <div class="row">
@@ -35,6 +35,24 @@ import { mapState } from 'vuex'
 
 export default {
     name: 'ConfiguracaoEquipe',
-    computed: mapState(['equipe'])
+    data: () => ({
+      titulo: 'Configuração da equipe',
+    }),
+
+
+    // computed: mapState(['equipe'])
+    // computed: {
+    //   e() {
+    //     return this.$store.state.equipe
+    //   }
+    // }
+    computed: mapState({
+      equipe: state => state.equipe,
+
+      // Usando propriedades local e global concatenadas
+      tituloCustomizadoLocal(state) {
+        return `${this.titulo} : ${state.equipe.carro}`
+      }
+    })
 }
 </script>
