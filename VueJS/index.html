@@ -24,21 +24,14 @@
         <br><br>
         <h4>Último paciente cadastrado</h4>
         <p v-if="pacientes.length > 0">
-                Nome: {{pacientes[pacientes.length - 1].nome}}
-            <br>
-                Idade: {{pacientes[pacientes.length - 1].idade}}
-            <br>
-                Plano: {{pacientes[pacientes.length - 1].plano}}
-            <br>
+            {{ultimoPaciente}}
             <hr>
         </p>
         <h4>Pacientes do Plano Ouro</h4>
-            <p v-for="p in pacientes">  
-                <span v-if="p.plano == 'Ouro'">
-                    Nome: {{p.nome }}<br>
-                    Idade: {{p.idade}}<br>
-                    Plano: {{p.plano}}<br>
-                </span>            
+            <p v-for="p in planoOuroPaciente">  
+                Nome: {{p.nome}}<br>
+                Idade: {{p.idade}}<br>
+                Plano: {{p.plano}}<br>      
             </p>
         <hr>
         <h4>Pacientes cadastrados</h4>
@@ -75,6 +68,23 @@
                     this.pacientes.pop()
                 }
             },
+            computed: {
+                ultimoPaciente(){
+                    let key = this.pacientes.length - 1
+                    let txt = ''
+
+                    txt += 'Nome: ' + this.pacientes[key].nome + ', '
+                    txt += 'Idade: ' + this.pacientes[key].idade + ', '
+                    txt += 'Plano: ' + this.pacientes[key].plano + '.'
+
+                    return txt.toUpperCase()
+                },
+                planoOuroPaciente(){
+                    // se o item do atributo plano == 'Ouro'
+                    return this.pacientes.filter(item => item.plano == 'Ouro')
+                },
+                
+            }
         })
     </script>
 
