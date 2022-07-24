@@ -12,27 +12,69 @@
 </head>
 <body>
     <div id="app">
-        <!-- renderização condicional  -->
-        <template v-if="saudacao">
-                <h1>Boas-vindas</h1>
-                <p>Conteúdo da tag <strong>template</strong></p>
-        </template>
-        <template v-for="n in 10">
-            <p>2 x {{n}} = {{2*n}}</p>
-        </template>
+        <h4>Adicionar Pacientes</h4>
+        <span>Nome: </span><input type="text" id="inputNome">
+        <br><br>
+        <span>Idade: </span><input type="text" id="inputIdade">
+        <br><br>
+        <span>Plano: </span><input type="text" id="inputPlano">
+        <br><br>
+        <button @click="adicionarPaciente()">Adicionar</button>
+        <button @click="removerPaciente()">Remover</button>
+        <br><br>
+        <h4>Último paciente cadastrado</h4>
+        <p v-if="pacientes.length > 0">
+                Nome: {{pacientes[pacientes.length - 1].nome}}
+            <br>
+                Idade: {{pacientes[pacientes.length - 1].idade}}
+            <br>
+                Plano: {{pacientes[pacientes.length - 1].plano}}
+            <br>
+            <hr>
+        </p>
+        <h4>Pacientes do Plano Ouro</h4>
+            <p v-for="p in pacientes">  
+                <span v-if="p.plano == 'Ouro'">
+                    Nome: {{p.nome }}<br>
+                    Idade: {{p.idade}}<br>
+                    Plano: {{p.plano}}<br>
+                </span>            
+            </p>
+        <hr>
+        <h4>Pacientes cadastrados</h4>
+        <p v-for="p in pacientes">
+            Nome: {{p.nome}}<br>
+            Idade: {{p.idade}}<br>
+            Plano: {{p.plano}}<br>
+            <hr>
+        </p>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                saudacao: true
+                pacientes: [
+                    {
+                        nome: 'Anônimo',
+                        idade: 0,
+                        plano: 'prata'
+                    }
+                ]
             },
             methods: {
+                adicionarPaciente(){
+                    this.pacientes.push({
+                        nome: inputNome.value,
+                        idade: inputIdade.value,
+                        plano: inputPlano.value, 
+                    })
+                },
 
-
+                removerPaciente(){
+                    this.pacientes.pop()
+                }
             },
-        
         })
     </script>
 
