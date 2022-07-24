@@ -12,53 +12,54 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-            <ul v-for="(pastaP, key) in pastasP">
-                <li>
-                    {{pastaP}} 
-                    <ul v-for="pastaF in pastasSub.pastasF[key]">
-                        <li>{{pastaF}}</li>
-                    </ul>
+        <table border="1">
+
+            <tbody>
+                <li v-for="p in publicacoes" styles="border: solid 1px; margin-bottom:10px" :key="p.id">
+                    <div>
+                        {{p.publicacoes}}
+                        <hr>
+                        <input type="text">
+                    </div>
                 </li>
-            </ul>
-        </ul>
+                <button @click="misturarArray()" styles="padding-top: 15px;">Misturar</button>
+                </tbody>
+        </table>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                idx: 0,
-                pastasP: [
-                        'Arquivos de Programas', 
-                        'Windows', 
-                        'Usuario',
-                ],
-                pastasSub: {
-                    pastasF: [
-                        [
-                        'Adobe', 
-                        'Java', 
-                        'MySQL', 
-                        'nodeJS',
-                        ],
-                        [
-                        'System32',
-                        'Temp',   
-                        ],
-                        [
-                        'Jonathan',
-                        'Johnny',
-                        'Convidado'
-                        ],
-                    ]
+                path: {
+                    01: {
+                        pai: 'Arquivos de Programa',
+                        filho: ['Adobe','Java','Mysql','nodeJs']
+                    },
+                    02: {
+                        pai: 'Windows',
+                        filho: ['System32','Temp']
+                    },
+                    03: {
+                        pai: 'Usuario',
+                        filho: ['Jonathan','Johnny','Convidado']
+                    }
                 },
+                publicacoes: [ 
+                    { id: 1, publicacoes: 'Publicações 1'},
+                    { id: 2, publicacoes: 'Publicações 2'},
+                    { id: 3, publicacoes: 'Publicações 3'},
+                ],
             },
             methods: {
-                cont(pastaP){
-                    var posicao = indexOf(pastaP)
-                    this.pastasF[posicao]
+                misturarArray(){
+                    let misturado = []
+                    misturado[1] = this.publicacoes[0]
+                    misturado[2] = this.publicacoes[1]
+                    misturado[0] = this.publicacoes[2]
+                    this.publicacoes = misturado
                 }
+
             },
         })
     </script>
