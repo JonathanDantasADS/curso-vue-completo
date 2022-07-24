@@ -12,26 +12,52 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="saldo < 0" style="color:rgb(231, 22, 11)">Saldo negativo: R$ {{ saldo.toFixed(2) }}</p>
-        <p v-else-if="saldo > 0" style="color:rgb(18, 234, 54)">Saldo positivo: R$ {{ saldo.toFixed(2) }}</p>
-        <p v-else>Saldo indisponivel</p>
-        <input type="text" id="valor">
-        <button @click="creditarSaldo()">Creditar</button>
-        <button @click="debitarSaldo()">Debitar</button>
+        <ul>
+            <ul v-for="(pastaP, key) in pastasP">
+                <li>
+                    {{pastaP}} 
+                    <ul v-for="pastaF in pastasSub.pastasF[key]">
+                        <li>{{pastaF}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                saldo: 0
+                idx: 0,
+                pastasP: [
+                        'Arquivos de Programas', 
+                        'Windows', 
+                        'Usuario',
+                ],
+                pastasSub: {
+                    pastasF: [
+                        [
+                        'Adobe', 
+                        'Java', 
+                        'MySQL', 
+                        'nodeJS',
+                        ],
+                        [
+                        'System32',
+                        'Temp',   
+                        ],
+                        [
+                        'Jonathan',
+                        'Johnny',
+                        'Convidado'
+                        ],
+                    ]
+                },
             },
             methods: {
-                creditarSaldo(){
-                    this.saldo += parseFloat(valor.value)
-                },
-                debitarSaldo(){
-                    this.saldo -= parseFloat(valor.value)
+                cont(pastaP){
+                    var posicao = indexOf(pastaP)
+                    this.pastasF[posicao]
                 }
             },
         })
