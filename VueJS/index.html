@@ -7,80 +7,56 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
-        .verde {
-            background-color: green;
-        }
-
-        .vermelho {
-            background-color: brown;
-        }
-
-        .amarelo {
-            background-color: yellow;
-        }
-
-        .borda {
-            border: 1px solid;
-        }
-
-        div {
-            margin: 5px;
-        }
-
-        .div-principal{
-            width: 280px;
-            height: 120px;
-        }
-
-        .div-comum{
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-        }
 
     </style>
 </head>
 <body>
-    <div id="app">
-        <a href="https://google.com.br"
-        target="_blank" 
-        @click.prevent="prevenirComportamento()">Link</a>
-        <br> Mensagem: {{msg}}
+    <div id="app">     
+        <button @click="exibirSaldo = !exibirSaldo">
+            <span v-if="exibirSaldo">Ocultar Saldo</span>
+            <span v-if="!exibirSaldo">Exibir Saldo</span>
+        </button>
+        <p>Saldo: 
+            <span v-if="exibirSaldo">R$ {{ saldo }}</span>
+            <span v-if="!exibirSaldo">R$ 0    ... Tá liso em! kkk </span>
+        </p>
         <hr>
-        <form @submit.prevent.once="prevenirUmaVez()">
-            <button type="submit">Enviar</button>
-        </form>
-        <p>Formulário: {{ formulario }}</p>
-                            <!-- Quando teclar a tecla X, o evento é liberado  -->
-        <input type="text" @keyup.x="capturandoTeclas($event)">
-        <p>Teclas: {{teclas}}</p>
+
+        <!-- v-if, v-else e v-else-if  -->
+        Idade: <input type="text" id="inputIdade" @blur="setIdade()">
+        <p v-if="idade == 0"></p>
+        <p v-else-if="idade < 18">Menor de idade</p>
+        <p v-else-if="idade >= 100">Beleza, Rainha Elizabeth</p>
+        <p v-else>Maior de idade</p>
+        {{ idade }} Anos
+        
+        Nota: <input type="text" id="inputNota" @blur="setNota()">
+        <p v-if="nota == ''">Digite a noite do aluno(a)</p>
+        <p v-else-if="nota < 5"> Aluno reprovado, vai estudar menino!</p>
+        <p v-else-if="nota >= 5 && nota < 7"> Aluno recuperação</p>
+        <p v-else-if="nota >= 7 && nota <= 10">Aluno aprovado(a)</p>
+        <p v-else>Valor informando é inválido</p>
+
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                msg: '',
-                click: 0,
-                formulario: '',
-                teclas: ''
+                saldo: 4500.40,
+                exibirSaldo: false,
+                idade: 0,
+                nota: 0
             },
             methods: {
-                prevenirComportamento(){
-                    this.msg = 'Comportamento padrão ativado'
+                setIdade(){
+                    this.idade = inputIdade.value
                 },
 
-                executarUmaVez(){
-                    this.click++
-                },
-
-                prevenirUmaVez(){
-                    this.formulario = 'Prevenindo o comporatamento padrão'
-                },
-
-                capturandoTeclas(e){
-                    this.teclas += e.key
+                setNota(){
+                    this.nota = inputNota.value
                 }
+
             },
         })
     </script>
