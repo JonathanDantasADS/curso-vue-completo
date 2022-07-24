@@ -12,23 +12,27 @@
 </head>
 <body>
     <div id="app">
-        <p @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo tooltip</p>
-        <div v-show="exibirTextoAjuda">
-            <h3>Titulo texto ajuda</h3>
-            <p>Conteudo texto ajuda</p>
-        </div>
-
+        <p v-if="saldo < 0" style="color:rgb(231, 22, 11)">Saldo negativo: R$ {{ saldo.toFixed(2) }}</p>
+        <p v-else-if="saldo > 0" style="color:rgb(18, 234, 54)">Saldo positivo: R$ {{ saldo.toFixed(2) }}</p>
+        <p v-else>Saldo indisponivel</p>
+        <input type="text" id="valor">
+        <button @click="creditarSaldo()">Creditar</button>
+        <button @click="debitarSaldo()">Debitar</button>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                exibirTextoAjuda: false
-
+                saldo: 0
             },
             methods: {
-
+                creditarSaldo(){
+                    this.saldo += parseFloat(valor.value)
+                },
+                debitarSaldo(){
+                    this.saldo -= parseFloat(valor.value)
+                }
             },
         })
     </script>
