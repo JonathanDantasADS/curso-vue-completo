@@ -12,55 +12,54 @@
 </head>
 <body>
     <div id="app">
-        <table border="1">
-
-            <tbody>
-                <li v-for="p in publicacoes" styles="border: solid 1px; margin-bottom:10px" :key="p.id">
-                    <div>
-                        {{p.publicacoes}}
-                        <hr>
-                        <input type="text">
-                    </div>
-                </li>
-                <button @click="misturarArray()" styles="padding-top: 15px;">Misturar</button>
-                </tbody>
-        </table>
+        <ul>
+            <li v-for="coment in comentarios">
+                {{coment.id}} - {{coment.comentario}}
+            </li>
+        </ul>
+        <input type="text">
+        <input type="text">
+        <div></div>
+        <button @click="addElemento()">Adicionar Comentario</button>
+        <button @click="delElemento()">Removendo Comentario</button>
+        <button @click="altElemento()">Alterar Comentario</button>
+        <hr>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                path: {
-                    01: {
-                        pai: 'Arquivos de Programa',
-                        filho: ['Adobe','Java','Mysql','nodeJs']
-                    },
-                    02: {
-                        pai: 'Windows',
-                        filho: ['System32','Temp']
-                    },
-                    03: {
-                        pai: 'Usuario',
-                        filho: ['Jonathan','Johnny','Convidado']
-                    }
-                },
-                publicacoes: [ 
-                    { id: 1, publicacoes: 'Publicações 1'},
-                    { id: 2, publicacoes: 'Publicações 2'},
-                    { id: 3, publicacoes: 'Publicações 3'},
+                comentarios: [
+                    {id: 1, comentario: 'Comentario 1'},
+                    {id: 2, comentario: 'Comentario 2'},
+                    {id: 3, comentario: 'Comentario 3'},
+                    {id: 4, comentario: 'Comentario 4'},
                 ],
             },
             methods: {
-                misturarArray(){
-                    let misturado = []
-                    misturado[1] = this.publicacoes[0]
-                    misturado[2] = this.publicacoes[1]
-                    misturado[0] = this.publicacoes[2]
-                    this.publicacoes = misturado
+                addElemento() {
+                    // this.comentarios[4] = { id: cod, comentario: coment}
+                    this.comentarios.push({ 
+                        id: 5, 
+                        comentario: 'Novo Comentario'
+                    })
+                },
+                delElemento() {
+                    this.comentarios.pop()
+                },
+                altElemento(){
+                    this.$set(
+                        this.comentarios, 
+                        0, 
+                        {
+                            id: 1,
+                            comentario: 'Atualizado'
+                        }
+                    )
                 }
-
             },
+        
         })
     </script>
 
