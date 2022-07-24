@@ -23,9 +23,13 @@
             border: 1px solid;
         }
 
+        div {
+            margin: 5px;
+        }
+
         .div-principal{
-            width: 200px;
-            height: 200px;
+            width: 280px;
+            height: 120px;
         }
 
         .div-comum{
@@ -39,15 +43,16 @@
 <body>
     <div id="app">
         <div class="borda div-principal" :class="cor">
-            {{cor}}
             <div>
-                <label> Posição X :</label>
+                Posição X :
                 <input type="text" :value="posicaoX">
             </div>
             <div>
-                <label>Posição Y :</label>
+                Posição Y :
                 <input type="text" :value="posicaoY">
             </div>
+            <div>cor: {{cor}}</div>
+
         </div>
     <hr>
     <div @click="mudarCor('verde')" class="borda div-comum" 
