@@ -11,7 +11,7 @@
 }(this, function () { 'use strict';
 
   /*  */  
-
+ 
   var emptyObject = Object.freeze({});
 
   // These helpers produce better VM code in JS engines due to their
