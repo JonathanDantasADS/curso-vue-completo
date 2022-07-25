@@ -22,7 +22,11 @@
         </div>
         <div class="row mt-3">
           <div class="col">
-            <button type="button" class="btn btn-primary">Montar equipe</button>
+            <button 
+              type="button" 
+              class="btn btn-primary" @click="montarEquipe">
+              Montar equipe
+            </button>
           </div>
         </div>              
       </div>
@@ -46,13 +50,20 @@ export default {
     //     return this.$store.state.equipe
     //   }
     // }
-    computed: mapState({
+    computed: 
+    mapState({
       equipe: state => state.equipe,
 
       // Usando propriedades local e global concatenadas
       tituloCustomizadoLocal(state) {
         return `${this.titulo} : ${state.equipe.carro}`
       }
-    })
+    }),
+    methods: {
+      montarEquipe(){
+        let equipe = Object.assign({}, this.$store.state.equipe)
+        this.$store.commit('adicionaraEquipeEmEquipes', equipe)
+      }
+    }
 }
 </script>
